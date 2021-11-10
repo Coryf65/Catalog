@@ -15,15 +15,22 @@ namespace Catalog.Repositories
             new Item { Id = Guid.NewGuid(), Name = "Bronze Shield", Price = 12, CreatedDate = System.DateTimeOffset.UtcNow }
         };
 
-        // getting the items
+        // Get all items
         public IEnumerable<Item> GetItems()
         {
             return items;
         }
 
+        // Get item based on GUID
         public Item GetItem(Guid id)
         {
             return items.Where(item => item.Id == id).SingleOrDefault();
+        }
+
+        // Create Item
+        public void CreateItem(Item item)
+        {
+            items.Add(item);
         }
     }
 }
