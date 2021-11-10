@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Catalog.Repositories;
 using Catalog.Entities;
 using System;
+using System.Linq;
+using Catalog.DTOs;
 
 namespace Catalog.Controllers
 {
@@ -19,16 +21,17 @@ namespace Catalog.Controllers
         }
 
         [HttpGet] // declare the HTTP Route, like GET /items
-        public IEnumerable<Item> GetItems()
+        // Setting up the contract
+        public IEnumerable<ItemDto> GetItems()
         {        
-            var items = repo.GetItems();
+            var items = repo.GetItems().Select( item => item.AsDto());
             return items;
         }
 
         [HttpGet("{id}")]
         // how we will handle the extra data
         // GET /items/{id}, like /items/2
-        public ActionResult<Item> GetItem(Guid id)
+        public ActionResult<ItemDto> GetItem(Guid id)
         {
             var item = repo.GetItem(id);
 
@@ -37,9 +40,8 @@ namespace Catalog.Controllers
             {
                 return NotFound();
             }
-
-            // ActionResult allows us to return many different types
-            return item;
+            
+            return item.AsDto();
         }
 
     }
