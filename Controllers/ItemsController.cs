@@ -28,9 +28,17 @@ namespace Catalog.Controllers
         [HttpGet("{id}")]
         // how we will handle the extra data
         // GET /items/{id}, like /items/2
-        public Item GetItem(Guid id)
+        public ActionResult<Item> GetItem(Guid id)
         {
             var item = repo.GetItem(id);
+
+            // if we cannot find the given item
+            if (item is null)
+            {
+                return NotFound();
+            }
+
+            // ActionResult allows us to return many different types
             return item;
         }
 
