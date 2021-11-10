@@ -33,7 +33,8 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
+/bin/*
+/bin/
 
 # Visual Studio 2015
 .vs/
-bin/
