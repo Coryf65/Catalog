@@ -44,5 +44,25 @@ namespace Catalog.Controllers
             return item.AsDto();
         }
 
+        // Create action
+        // POST /items
+        [HttpPost]
+        public ActionResult<ItemDto> CreateItem(CreateItemDto itemDto)
+        {
+            Item item = new()
+            {
+                Id = Guid.NewGuid(),
+                Name = itemDto.Name,
+                Price = itemDto.Price,
+                CreatedDate = DateTimeOffset.Now
+            };
+
+            repo.CreateItem(item);
+
+            // convention is to create and return the item created
+            // so we are returning how to get that item saved, the id just saved, and the entire item
+            return CreatedAtAction(nameof(GetItem), new { id = item.Id}, item.AsDto());
+        } 
+
     }
 }
