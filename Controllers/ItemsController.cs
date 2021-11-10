@@ -11,11 +11,11 @@ namespace Catalog.Controllers
     [Route("[controller]")] // GET /items
     public class ItemsController : ControllerBase
     {
-        private readonly InMemItemsRepository repo;
+        private readonly IItemsRepository repo;
 
-        public ItemsController()
+        public ItemsController(IItemsRepository repository)
         {
-            repo = new InMemItemsRepository();
+            this.repo = repository;
         }
 
         [HttpGet] // declare the HTTP Route, like GET /items
