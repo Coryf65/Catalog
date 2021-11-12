@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Catalog.Repositories;
 using Catalog.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 
 namespace Catalog
@@ -30,6 +26,11 @@ namespace Catalog
         // Register Services here
         public void ConfigureServices(IServiceCollection services)
         {
+            // telling mongodb anytome it see a guid to make it a string
+            BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
+            // same for DateTimeOffset, set as a string
+            BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(BsonType.String));
+
             // register and inject our settings into our app
             services.AddSingleton<IMongoClient>(ServiceProvider => {
                 var settings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
@@ -37,7 +38,9 @@ namespace Catalog
             });
 
             // registering the service, or handle the DI
-            services.AddSingleton<IItemsRepository, InMemItemsRepository>();
+            // Now I will switch from the in memory object to MongoDB
+            //services.AddSingleton<IItemsRepository, InMemItemsRepository>(); // in-memory object list
+            services.AddSingleton<IItemsRepository, MongoDbItemsRepository>(); // MongoDB database
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
