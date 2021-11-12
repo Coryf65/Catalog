@@ -22,7 +22,6 @@ namespace Catalog.Repositories
             IMongoDatabase database = mongoClient.GetDatabase(databaseName);
             // ref to our collection
             itemsCollection = database.GetCollection<Item>(collectionName);
-
         }
 
         // Creating the Item in DB
