@@ -1,6 +1,6 @@
 # RESTful API .Net5
 
-[here](https://youtu.be/ZXdFisA_hOY?t=4104)
+
 
 ## Tech
 
@@ -13,8 +13,6 @@ Install MongoDB inside the project in a terminal
 ``` CLI
 dotnet add package MongoDB.Driver
 ```
-
-
 
 ## Run and setup our Docker image for MongoDB
 
@@ -37,4 +35,4 @@ docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db mongo
 docker ps
 ```
 
-4. to see the items in our Database (MongoDB) we are going to install an extension for VScode called `MongoDB`
+4. to see the items in our Database (MongoDB) we are going to install an extension for VScode called`MongoDB`
