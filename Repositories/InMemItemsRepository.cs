@@ -30,7 +30,15 @@ namespace Catalog.Repositories
         // Create Item
         public void CreateItem(Item item)
         {
+            // in mem list, update the list
             items.Add(item);
+        }
+
+        public void UpdateItem(Item item)
+        {
+            // in mem list, so update the list
+            var index = items.FindIndex(existingItem => existingItem.Id == item.Id);
+            items[index] = item;
         }
     }
 }
