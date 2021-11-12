@@ -1,29 +1,54 @@
 # RESTful API .Net5
 
+- A RESTful API, using MongoDB
+- C# .NET 5 API
 
+- built around the concept of items in a RPG
+- Docs built using Swagger
 
 ## Tech
 
-- Docker [install here](https://docs.docker.com/get-docker/)
-- Postman
-- .NET 5
-- MongoDB 
+- VSCode, the IDE I am using [get it here](https://code.visualstudio.com/)
+- Docker, for Running MongoDB inside [get it here](https://docs.docker.com/get-docker/)
+- Postman, Testing APIs [About](https://www.postman.com/home)
+- .NET 5, Framework [Docs](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-5)
+- C#, Language [Docs](https://docs.microsoft.com/en-us/dotnet/csharp/)
+- MongoDB, NoSQL Database [Docs](https://docs.mongodb.com/manual/)
+- Swagger, Docs for REST APIs [Docs](https://swagger.io/tools/swagger-ui/)
 
 Install MongoDB inside the project in a terminal
 ``` CLI
 dotnet add package MongoDB.Driver
 ```
 
-## Run and setup our Docker image for MongoDB
+## Getting Started
 
-### Mongo DB 
+### Starting Project
 
-1. Install it on our server / pc
+1. Clone
+
+<details><summary><b>Show instructions</b></summary>
+
+1. Run in the terminal of your choice:
+
+    ```sh
+    git clone https://github.com/Coryf65/Catalog.git
+    ```
+
+> Easy way: run inside VSCode Terminal open the termial using `control + ~`
+
+2. 
+
+</details>
+
+### Setting up Mongo DB 
+
+1. Install it on a server / pc
 2. Run it in Docker, which I will be doing
 
 ### Getting the public Docker image for MongoDB
 
-1. open terminal
+1. open terminal, I am using the terminal built into VSCode
 
 2. Run the follow to create our MongoDB container and run it 
 ```bash
