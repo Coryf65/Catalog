@@ -62,7 +62,45 @@ namespace Catalog.Controllers
             // convention is to create and return the item created
             // so we are returning how to get that item saved, the id just saved, and the entire item
             return CreatedAtAction(nameof(GetItem), new { id = item.Id}, item.AsDto());
-        } 
+        }
+
+        // PUT usually don't return
+        [HttpPut("{id}")]
+        public ActionResult UpdateItem(Guid id, UpdateItemDto itemDto)
+        {
+            var existingItem = repo.GetItem(id);
+
+            if (existingItem is null)
+            {
+                return NotFound();
+            }
+
+            // found something, we can use with when using Record types
+            Item updatedItem = existingItem with {
+                Name = itemDto.Name,
+                Price = itemDto.Price
+            };
+
+            repo.UpdateItem(updatedItem);
+
+            return NoContent();
+        }
+
+        // DELETE /items/{id}
+        [HttpDelete("{id}")]
+        public ActionResult DeleteItem(Guid id)
+        {
+            var existingItem = repo.GetItem(id);
+
+            if (existingItem is null)
+            {
+                return NotFound();
+            }
+
+            repo.DeleteItem(id);
+
+            return NoContent();
+        }
 
     }
 }

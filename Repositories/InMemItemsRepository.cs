@@ -34,11 +34,19 @@ namespace Catalog.Repositories
             items.Add(item);
         }
 
+        // Update an item
         public void UpdateItem(Item item)
         {
             // in mem list, so update the list
             var index = items.FindIndex(existingItem => existingItem.Id == item.Id);
             items[index] = item;
+        }
+
+        // Delete an item
+        public void DeleteItem(Guid id)
+        {
+            var index = items.FindIndex(existingItem => existingItem.Id == id);
+            items.RemoveAt(index);
         }
     }
 }
