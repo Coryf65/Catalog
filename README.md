@@ -36,3 +36,5 @@ docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db mongo
 ```bash
 docker ps
 ```
+
+4. to see the items in our Database (MongoDB) we are going to install an extension for VScode called `MongoDB`
