@@ -35,6 +35,8 @@ msbuild.err
 msbuild.wrn
 /bin/*
 /bin/
+/obj/
+/obj/*
 
 # Visual Studio 2015
 .vs/
