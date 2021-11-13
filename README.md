@@ -87,9 +87,14 @@ docker stop mongo
 - creating the new docker image of mongodb with Auth, using enviroment variables, username and password for this db
 `docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db -e MONGO_INITDB_ROOT_USERNAME=anyusername -e MONGO_INITDB_ROOT_PASSWORD=somepasswordyouchose mongo`
 
+- add the new username into appsettings.json
+
 - adding the secrets we are passing into Docker/Mongodb container
 
 - we are using terminal, setup use of secrets for our project
 `dotnet user-secrets init`
 
-- this will create new files in our project
+- this will add an id into our .csproj file
+
+- creating a secret, matching the format of our app settings format. in appsettings.json
+`dotnet user-secrets set MongoDbSettings:Password somepasswordyouchose`
