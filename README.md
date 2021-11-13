@@ -44,13 +44,15 @@ dotnet add package MongoDB.Driver
 ### Setting up Mongo DB 
 
 1. Install it on a server / pc
-2. Run it in Docker, which I will be doing
+2. Run it in Docker, which I will be doing here
 
-### Getting the public Docker image for MongoDB
+### Setup MongoDB for Development, in Docker (no auth)
 
 1. open terminal, I am using the terminal built into VSCode
 
-2. Creating the MongoDB Docker Container 
+> Note: We will need Docker installed on our pc here. See setup [here](https://docs.docker.com/get-docker/)
+
+2. Creating the MongoDB Docker Container, No auth for Development use
 ```bash
 docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db mongo
 ```
@@ -60,4 +62,34 @@ docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db mongo
 docker ps
 ```
 
-4. to see the items in our Database (MongoDB) we are going to install an extension for VScode called`MongoDB`
+4. You can stop that container by name, we named it `mongo`
+
+```bash
+docker stop mongo
+```
+
+5. to see the items in our Database (MongoDB) we are going to install an extension for VScode called `MongoDB`
+
+- it appears on the left of vscode as a leaf image
+- goto /items /Documents and select an entry and we can see our data here
+
+### Setup MongoDB for production, in Docker (using authentication)
+
+- stop continer if running
+`docker stop mongo`
+
+- finding volume storage
+`docker volume ls`
+
+- removing volume
+`docker volume rm mongodbdata`
+
+- creating the new docker image of mongodb with Auth, using enviroment variables, username and password for this db
+`docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db -e MONGO_INITDB_ROOT_USERNAME=anyusername -e MONGO_INITDB_ROOT_PASSWORD=somepasswordyouchose mongo`
+
+- adding the secrets we are passing into Docker/Mongodb container
+
+- we are using terminal, setup use of secrets for our project
+`dotnet user-secrets init`
+
+- this will create new files in our project
