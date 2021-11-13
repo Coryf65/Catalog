@@ -17,7 +17,7 @@
 - Swagger, Docs for REST APIs [Docs](https://swagger.io/tools/swagger-ui/)
 
 Install MongoDB inside the project in a terminal
-``` CLI
+```bash
 dotnet add package MongoDB.Driver
 ```
 
@@ -31,7 +31,7 @@ dotnet add package MongoDB.Driver
 
 1. Run in the terminal of your choice:
 
-    ```sh
+    ```bash
     git clone https://github.com/Coryf65/Catalog.git
     ```
 
