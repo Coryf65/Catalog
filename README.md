@@ -25,7 +25,7 @@ dotnet add package MongoDB.Driver
 
 ### Starting Project
 
-1. Clone
+1. Clone, Get all the files from this project
 
 <details><summary><b>Show instructions</b></summary>
 
@@ -50,7 +50,7 @@ dotnet add package MongoDB.Driver
 
 1. open terminal, I am using the terminal built into VSCode
 
-2. Run the follow to create our MongoDB container and run it 
+2. Creating the MongoDB Docker Container 
 ```bash
 docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db mongo
 ```

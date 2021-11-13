@@ -31,7 +31,7 @@ namespace Catalog
             // same for DateTimeOffset, set as a string
             BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(BsonType.String));
 
-            // register and inject our settings into our app
+            // register and inject our settings into our app, This allows us to use our MongoDB settings
             services.AddSingleton<IMongoClient>(ServiceProvider => {
                 var settings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
                 return new MongoClient(settings.ConnectionString);
