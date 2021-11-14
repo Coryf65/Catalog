@@ -6,6 +6,14 @@
 - built around the concept of items in a RPG
 - Docs built using Swagger
 
+![swaggerDocsDisplay](https://user-images.githubusercontent.com/20805058/141695609-180b5d79-06b7-43d5-84f8-5d63570e7c2f.png)
+
+![swaggerDocsDisplay2](https://user-images.githubusercontent.com/20805058/141695615-70607fee-5633-4ce0-bbee-1a81c2b095de.png)
+
+![healthCheck](https://user-images.githubusercontent.com/20805058/141695619-c097bc84-9ff0-4232-9437-5e255e1a8362.png)
+
+
+
 ## Tech
 
 - VSCode, the IDE I am using [get it here](https://code.visualstudio.com/)
