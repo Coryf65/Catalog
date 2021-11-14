@@ -1,6 +1,8 @@
+using System;
 using Catalog.Repositories;
 using Catalog.Settings;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,11 +32,11 @@ namespace Catalog
             BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
             // same for DateTimeOffset, set as a string
             BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(BsonType.String));
+            var mongoDbSettings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
 
             // register and inject our settings into our app, This allows us to use our MongoDB settings
             services.AddSingleton<IMongoClient>(ServiceProvider => {
-                var settings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
-                return new MongoClient(settings.ConnectionString);
+                return new MongoClient(mongoDbSettings.ConnectionString);
             });
 
             // registering the service, or handle the DI
@@ -47,6 +49,17 @@ namespace Catalog
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Catalog", Version = "v1" });
             });
+            
+            // adds the services
+            // also now using the new MongoDBHealth package, called 'mongodb', and a timeout of 5 seconds
+            // "ready" groups items
+            services.AddHealthChecks()
+                .AddMongoDb(
+                    mongoDbSettings.ConnectionString
+                    ,name: "mongodb"
+                    , timeout: TimeSpan.FromSeconds(5)
+                    ,tags: new[] { "ready" }
+                ); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,6 +82,19 @@ namespace Catalog
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                // Enable Health Checks'Route' /status
+                // middleware
+                // Database is ready to serve requests
+                endpoints.MapHealthChecks(
+                    "/status/ready"
+                    ,new HealthCheckOptions{ Predicate = (check) => check.Tags.Contains("ready") }
+                );
+
+                // as long as the rest api, our service, is alive
+                endpoints.MapHealthChecks(
+                    "/status/live"
+                    ,new HealthCheckOptions{ Predicate = (_) => false }
+                );
             });
         }
     }

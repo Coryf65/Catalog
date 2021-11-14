@@ -15,6 +15,7 @@
 - C#, Language [Docs](https://docs.microsoft.com/en-us/dotnet/csharp/)
 - MongoDB, NoSQL Database [Docs](https://docs.mongodb.com/manual/)
 - Swagger, Docs for REST APIs [Docs](https://swagger.io/tools/swagger-ui/)
+- API Health status built in using `AspNetCore.HealthChecks.MongoDb` [Docs]()
 
 Install MongoDB inside the project in a terminal
 ```bash
