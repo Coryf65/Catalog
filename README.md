@@ -12,8 +12,6 @@
 
 ![healthCheck](https://user-images.githubusercontent.com/20805058/141695619-c097bc84-9ff0-4232-9437-5e255e1a8362.png)
 
-
-
 ## Tech
 
 - VSCode, the IDE I am using [get it here](https://code.visualstudio.com/)
@@ -23,7 +21,7 @@
 - C#, Language [Docs](https://docs.microsoft.com/en-us/dotnet/csharp/)
 - MongoDB, NoSQL Database [Docs](https://docs.mongodb.com/manual/)
 - Swagger, Docs for REST APIs [Docs](https://swagger.io/tools/swagger-ui/)
-- API Health status built in using `AspNetCore.HealthChecks.MongoDb` [Docs]()
+- API Health status built in using `AspNetCore.HealthChecks.MongoDb` [Docs](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks)
 
 Install MongoDB inside the project in a terminal
 ```bash
