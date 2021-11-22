@@ -45,6 +45,7 @@ msbuild.wrn
 */obj
 */obj/
 */obj/*
+Catalog.UnitTests\obj
 
 # Visual Studio 2015
 .vs/
