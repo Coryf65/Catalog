@@ -6,6 +6,14 @@
 - built around the concept of items in a RPG
 - Docs built using Swagger
 
+- Links 
+
+    - [Health Check Page](https://localhost:5001/status/live)
+    - [custom message Health Check Page](https://localhost:5001/status/ready)
+    - [Swagger API Documentationlear
+    ](https://localhost:5001/swagger/index.html)
+
+
 ![swaggerDocsDisplay](https://user-images.githubusercontent.com/20805058/141695609-180b5d79-06b7-43d5-84f8-5d63570e7c2f.png)
 
 ![swaggerDocsDisplay2](https://user-images.githubusercontent.com/20805058/141695615-70607fee-5633-4ce0-bbee-1a81c2b095de.png)
@@ -105,3 +113,18 @@ docker stop mongo
 
 - creating a secret, matching the format of our app settings format. in appsettings.json
 `dotnet user-secrets set MongoDbSettings:Password somepasswordyouchose`
+
+- building our docker image
+`docker build -t catalog:v1 .`
+
+- creating a network
+`docker network create NetworkName`
+
+- see our networks
+`docker network ls`
+
+- Have our Docker image join a network we just created, stop then
+`docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db -e MONGO_INITDB_ROOT_USERNAME=anyusername -e MONGO_INITDB_ROOT_PASSWORD=somepasswordyouchose --network=NetworkName mongo`
+
+- testing
+`docker run -it --rm -p 8080:80 -e MongoDbSetting:Host=mongo -e MongoDbSettings:Password=somepasswordyouchose --network=NetworkName catalog:v1`
