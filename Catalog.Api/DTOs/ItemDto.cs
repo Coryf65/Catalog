@@ -1,7 +1,7 @@
 using System;
 
 // Contract, 
-namespace Catalog.DTOs
+namespace Catalog.Api.DTOs
 {
     public record ItemDto
     {

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Catalog.DTOs
+namespace Catalog.Api.DTOs
 {
     // using our own dto and only adding what exactly is needed for creating an item
     public record CreateItemDto

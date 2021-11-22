@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Catalog.Repositories;
-using Catalog.Entities;
+using Catalog.Api.Repositories;
+using Catalog.Api.Entities;
 using System;
 using System.Linq;
-using Catalog.DTOs;
+using Catalog.Api.DTOs;
 using System.Threading.Tasks;
 
-namespace Catalog.Controllers
+namespace Catalog.Api.Controllers
 {
     // Marks this as an API controller
     [ApiController]
