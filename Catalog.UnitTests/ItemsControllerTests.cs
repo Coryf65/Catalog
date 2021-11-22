@@ -26,7 +26,7 @@ namespace Catalog.UnitTests
             // Arrange
             var repoStub = new Mock<IItemsRepository>();
             repoStub.Setup(repo => repo.GetItemAsync(It.IsAny<Guid>()))
-                .ReturnsAsync((Item)null);
+                .ReturnsAsync(null as Item);
 
             var loggerStub = new Mock<ILogger<ItemsController>>();
 
