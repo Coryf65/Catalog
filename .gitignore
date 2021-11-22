@@ -40,5 +40,11 @@ msbuild.wrn
 /.vscode
 /.vscode/
 
+*/bin
+*/build
+*/obj
+*/obj/
+*/obj/*
+
 # Visual Studio 2015
 .vs/
