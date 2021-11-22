@@ -27,6 +27,7 @@
 - Postman, Testing APIs [About](https://www.postman.com/home)
 - .NET 5, Framework [Docs](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-5)
 - C#, Language [Docs](https://docs.microsoft.com/en-us/dotnet/csharp/)
+- Unit Testing using [XUnit](https://xunit.net/)
 - MongoDB, NoSQL Database [Docs](https://docs.mongodb.com/manual/)
 - Swagger, Docs for REST APIs [Docs](https://swagger.io/tools/swagger-ui/)
 - API Health status built in using `AspNetCore.HealthChecks.MongoDb` [Docs](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks)
@@ -34,6 +35,12 @@
 Install MongoDB inside the project in a terminal
 ```bash
 dotnet add package MongoDB.Driver
+```
+
+Pacakages for Unit Testing
+```bash
+dotnet add package Microsoft.Extensions.Logging.Abstractions
+dotnet add package moq
 ```
 
 ## Getting Started
@@ -128,3 +135,15 @@ docker stop mongo
 
 - testing
 `docker run -it --rm -p 8080:80 -e MongoDbSetting:Host=mongo -e MongoDbSettings:Password=somepasswordyouchose --network=NetworkName catalog:v1`
+
+## Run a unit Test
+
+1. Dot Net CLI (I use this way)
+
+```bash
+dotnet test
+```
+
+2. VsCode, using CodeLens
+
+    - click on 'Run Test' on Unit Test Methods, inside VsCode
